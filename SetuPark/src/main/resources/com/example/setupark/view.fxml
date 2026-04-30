@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" stylesheets="@styles.css"
+            fx:controller="com.example.setupark.controller.Controller">
+
+    <top>
+        <VBox spacing="5">
+            <padding>
+                <Insets top="10" right="15" bottom="5" left="15"/>
+            </padding>
+
+            <!-- header -->
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="SETU Park" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                    <font>
+                        <Font name="System Bold" size="24"/>
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- user info -->
+                <VBox alignment="CENTER_RIGHT" spacing="3">
+                    <Label text="Sarah Walsh" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    <Label text="Student" styleClass="role-student"/>
+                </VBox>
+            </HBox>
+
+            <Separator/>
+
+            <!-- actions -->
+            <HBox spacing="15" style="-fx-padding: 5 0 10 0;">
+                <Button text="📱 Scan QR Code" styleClass="primary-button"/>
+                <Button text="📅 My Reservations" styleClass="secondary-button"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Last Updated: Just now" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.5">
+
+            <!-- left panel -->
+            <VBox spacing="10" style="-fx-padding: 15;">
+                <Label text="Live Parking Map" style="-fx-font-size: 18px; -fx-font-weight: bold;">
+                    <font>
+                        <Font name="System Bold" size="18"/>
+                    </font>
+                </Label>
+
+                <HBox spacing="15" style="-fx-padding: 5 0 10 0;">
+                    <Label text="Filters:" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+                    <ToggleButton text="🎓 Student"/>
+                    <ToggleButton text="👨‍🏫 Staff"/>
+                    <ToggleButton text="👤 Visitor"/>
+
+                </HBox>
+
+                <ScrollPane fitToWidth="true" style="-fx-background-color: #ecf0f1;">
+                    <GridPane hgap="8" vgap="8" alignment="CENTER" style="-fx-padding: 20;">
+
+                        <!-- legend -->
+                        <HBox spacing="20" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="4">
+                            <HBox spacing="5" alignment="CENTER_LEFT">
+                                <Rectangle width="20" height="20" fill="#27ae60"/>
+                                <Label text="Available"/>
+                            </HBox>
+                            <HBox spacing="5" alignment="CENTER_LEFT">
+                                <Rectangle width="20" height="20" fill="#f39c12"/>
+                                <Label text="Reserved"/>
+                            </HBox>
+                            <HBox spacing="5" alignment="CENTER_LEFT">
+                                <Rectangle width="20" height="20" fill="#e74c3c"/>
+                                <Label text="Occupied"/>
+                            </HBox>
+                        </HBox>
+
+                        <!-- A1 -->
+                        <VBox spacing="3" GridPane.rowIndex="1" GridPane.columnIndex="0" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-available"/>
+                            <Label text="A1"/>
+                        </VBox>
+
+                        <!-- A2 -->
+                        <VBox spacing="3" GridPane.rowIndex="1" GridPane.columnIndex="1" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8"
+                                       styleClass="rectangle-available"/>
+                            <Label text="A2"/>
+                        </VBox>
+
+                        <!-- A3 -->
+                        <VBox spacing="3" GridPane.rowIndex="1" GridPane.columnIndex="2" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8"
+                                       styleClass="rectangle-reserved"/>
+                            <Label text="A3"/>
+                            <Label text="Expires: 14:30" style="-fx-font-size: 9px; -fx-text-fill: #856404;"/>
+                        </VBox>
+
+                        <!-- A4 -->
+                        <VBox spacing="3" GridPane.rowIndex="1" GridPane.columnIndex="3" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8"
+                                       styleClass="rectangle-occupied"/>
+                            <Label text="A4"/>
+                        </VBox>
+
+
+                        <!-- B1 -->
+                        <VBox spacing="3" GridPane.rowIndex="2" GridPane.columnIndex="0" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-available"/>
+                            <Label text="B1"/>
+                        </VBox>
+
+                        <!-- B2 -->
+                        <VBox spacing="3" GridPane.rowIndex="2" GridPane.columnIndex="1" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-available"/>
+                            <Label text="B2"/>
+                        </VBox>
+
+                        <!-- B3 -->
+                        <VBox spacing="3" GridPane.rowIndex="2" GridPane.columnIndex="2" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-available"/>
+                            <Label text="B3"/>
+                        </VBox>
+
+                        <!-- B4 -->
+                        <VBox spacing="3" GridPane.rowIndex="2" GridPane.columnIndex="3" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8"
+                                       styleClass="rectangle-reserved"/>
+                            <Label text="B4"/>
+                            <Label text="Expires: 14:52" style="-fx-font-size: 9px; -fx-text-fill: #856404;"/>
+                        </VBox>
+
+                        <!-- C1 -->
+                        <VBox spacing="3" GridPane.rowIndex="3" GridPane.columnIndex="0" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-occupied"/>
+                            <Label text="C1"/>
+                        </VBox>
+
+                        <!-- C2 -->
+                        <VBox spacing="3" GridPane.rowIndex="3" GridPane.columnIndex="1" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-occupied"/>
+                            <Label text="C2"/>
+                        </VBox>
+
+                        <!-- C3 -->
+                        <VBox spacing="3" GridPane.rowIndex="3" GridPane.columnIndex="2" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-available"/>
+                            <Label text="C3"/>
+                        </VBox>
+
+                        <!-- C4 -->
+                        <VBox spacing="3" GridPane.rowIndex="3" GridPane.columnIndex="3" >
+                            <Rectangle width="70" height="70" arcWidth="8" arcHeight="8" styleClass="rectangle-reserved"/>
+                            <Label text="C4" />
+                            <Label text="Expires: 15:03" style="-fx-font-size: 9px; -fx-text-fill: #856404;"/>
+                        </VBox>
+
+                    </GridPane>
+                </ScrollPane>
+            </VBox>
+
+            <!-- right panel -->
+            <VBox spacing="15" style="-fx-padding: 15;">
+                <!-- current capacity -->
+                <VBox styleClass="card">
+                    <Label text="Current Capacity" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                    <HBox>
+                        <!-- progress Bar -->
+                        <ProgressBar progress="0.72" style="-fx-accent: #ff9743;" prefWidth="250"/>
+                        <Label text="       72%" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #ff9743;"/>
+                    </HBox>
+                    <Label text="432 / 600 spaces in use" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                </VBox>
+
+                <!-- peak time -->
+                <VBox styleClass="card">
+                    <Label text="Peak Time Analytics" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+
+                    <BarChart fx:id="peakTimesChart" categoryGap="8" barGap="2" prefHeight="200" prefWidth="280">
+                        <xAxis>
+                            <CategoryAxis label="Time of Day"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis tickUnit="20"/>
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+
+                <!-- reservation -->
+                <VBox styleClass="card">
+                    <Label text="Reservation" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 0 0 10 0"/>
+
+                    <DatePicker promptText="Select Date"/>
+
+
+                    <HBox spacing="10" style="-fx-padding: 10 0 10 0;">
+                        <ComboBox promptText="Start Time"/>
+                        <ComboBox promptText="End Time"/>
+                    </HBox>
+
+                    <Button text="Reserve Spot" styleClass="primary-button"/>
+                </VBox>
+            </VBox>
+        </SplitPane>
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer -->
+    <bottom>
+        <HBox spacing="15" style="-fx-padding: 10 15; -fx-background-color: #ecf0f1;" alignment="CENTER_LEFT">
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label style="-fx-font-size: 11px;" text="© 2026 SETU Park Management System"/>
+        </HBox>
+    </bottom>
+
+
+</BorderPane>

@@ -1,0 +1,92 @@
+.root {
+    -fx-font-family: "Segoe UI", "System";
+}
+
+.role-student {
+    -fx-background-color: #9b59b6;
+    -fx-text-fill: white;
+    -fx-padding: 2 8 2 8;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 11px;
+}
+
+
+/* buttons */
+.primary-button {
+    -fx-font-size: 12;
+
+
+    -fx-background-color: #7e7e7e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15 8 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.primary-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.secondary-button {
+    -fx-font-size: 12;
+
+
+    -fx-background-color: #7e7e7e;
+    -fx-text-fill: white;
+    -fx-padding: 8 15 8 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+
+/* parking spot */
+
+.rectangle-available {
+    -fx-fill: #27ae60;
+    -fx-stroke: #2c3e50;
+    -fx-stroke-width: 2;
+}
+
+.rectangle-reserved {
+    -fx-fill: #f39c12;
+    -fx-stroke: #2c3e50;
+    -fx-stroke-width: 2;
+}
+
+.rectangle-occupied {
+    -fx-fill: #e74c3c;
+    -fx-stroke: #2c3e50;
+    -fx-stroke-width: 2;
+}
+
+
+/* cards */
+.card {
+    -fx-background-color: white;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+/* toggle buttons */
+.toggle-button {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 5 10 5 10;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}

@@ -1,6 +1,9 @@
 package com.example.setupark.controller;
 
 import com.example.setupark.model.ParkingSpace;
+import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -8,7 +11,28 @@ import java.util.Map;
 
 public class Controller {
 
+    @FXML
+    private BarChart<String, Number> peakTimesChart;
+
     private Map<String, ParkingSpace> spaces = new HashMap<>();
+
+    @FXML
+    public void initialize() {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Average Occupancy");
+
+        series.getData().add(new XYChart.Data<>("9:00", 588));
+        series.getData().add(new XYChart.Data<>("10:00", 535));
+        series.getData().add(new XYChart.Data<>("11:00", 432));
+        series.getData().add(new XYChart.Data<>("12:00", 265));
+        series.getData().add(new XYChart.Data<>("13:00", 258));
+        series.getData().add(new XYChart.Data<>("14:00", 162));
+        series.getData().add(new XYChart.Data<>("15:00", 144));
+        series.getData().add(new XYChart.Data<>("16:00", 292));
+        series.getData().add(new XYChart.Data<>("17:00", 355));
+
+        peakTimesChart.getData().add(series);
+    }
 
     public void addSpace(ParkingSpace space) {
         spaces.put(space.getSpaceID(), space);
