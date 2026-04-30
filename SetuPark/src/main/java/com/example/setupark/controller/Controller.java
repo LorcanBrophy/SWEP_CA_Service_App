@@ -1,6 +1,7 @@
 package com.example.setupark.controller;
 
 import com.example.setupark.model.ParkingSpace;
+import com.example.setupark.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -51,12 +52,12 @@ public class Controller {
     }
 
     // reservation features
-    public boolean reserveSpace(String spaceID, String userID, LocalDateTime start, LocalDateTime end) {
+    public boolean reserveSpace(String spaceID, User user, LocalDateTime start, LocalDateTime end) {
         ParkingSpace space = getSpace(spaceID);
 
         if (space.getState() != ParkingSpace.State.AVAILABLE) return false;
 
-        space.setReservedByUserID(userID);
+        space.setReservedByUser(user);
         space.setReservationStart(start);
         space.setReservationEnd(end);
         space.setState(ParkingSpace.State.RESERVED);
@@ -64,14 +65,14 @@ public class Controller {
         return true;
     }
 
-    public boolean occupySpace(String spaceID, String userID) {
+    public boolean occupySpace(String spaceID, User user) {
         ParkingSpace space = getSpace(spaceID);
 
         if (space.getState() != ParkingSpace.State.RESERVED) return false;
 
-        if (!userID.equals(space.getReservedByUserID())) return false;
+        if (!user.equals(space.getReservedByUser())) return false;
 
-        space.setOccupiedByUserID(userID);
+        space.setOccupiedByUser(user);
         space.setState(ParkingSpace.State.OCCUPIED);
 
         return true;
@@ -80,8 +81,8 @@ public class Controller {
     public void releaseSpace(String spaceID) {
         ParkingSpace space = getSpace(spaceID);
 
-        space.setReservedByUserID(null);
-        space.setOccupiedByUserID(null);
+        space.setReservedByUser(null);
+        space.setOccupiedByUser(null);
         space.setReservationStart(null);
         space.setReservationEnd(null);
         space.setState(ParkingSpace.State.AVAILABLE);

@@ -7,8 +7,8 @@ public class ParkingSpace {
     private String spaceID;
     private State state;
 
-    private String reservedByUserID;
-    private String occupiedByUserID;
+    private User reservedByUser;
+    private User occupiedByUser;
 
     private LocalDateTime reservationStart;
     private LocalDateTime reservationEnd;
@@ -32,11 +32,11 @@ public class ParkingSpace {
     public State getState() {
         return state;
     }
-    public String getReservedByUserID() {
-        return reservedByUserID;
+    public User getReservedByUser() {
+        return reservedByUser;
     }
-    public String getOccupiedByUserID() {
-        return occupiedByUserID;
+    public User getOccupiedByUser() {
+        return occupiedByUser;
     }
     public LocalDateTime getReservationStart() {
         return reservationStart;
@@ -52,11 +52,11 @@ public class ParkingSpace {
     public void setState(State state) {
         this.state = state;
     }
-    public void setReservedByUserID(String reservedByUserID) {
-        this.reservedByUserID = reservedByUserID;
+    public void setReservedByUser(User reservedByUser) {
+        this.reservedByUser = reservedByUser;
     }
-    public void setOccupiedByUserID(String occupiedByUserID) {
-        this.occupiedByUserID = occupiedByUserID;
+    public void setOccupiedByUser(User occupiedByUser) {
+        this.occupiedByUser = occupiedByUser;
     }
     public void setReservationStart(LocalDateTime reservationStart) {
         this.reservationStart = reservationStart;

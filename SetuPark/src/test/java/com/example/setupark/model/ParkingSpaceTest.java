@@ -43,14 +43,16 @@ class ParkingSpaceTest {
 
     @Test
     void setReservedByUserIDTest() {
-        space.setReservedByUserID("user123");
-        assertEquals("user123", space.getReservedByUserID());
+        User user123 = new User("user123", User.Role.STAFF);
+        space.setReservedByUser(user123);
+        assertEquals(user123, space.getReservedByUser());
     }
 
     @Test
     void setOccupiedByUserIDTest() {
-        space.setOccupiedByUserID("user456");
-        assertEquals("user456", space.getOccupiedByUserID());
+        User user456 = new User("user456", User.Role.STAFF);
+        space.setOccupiedByUser(user456);
+        assertEquals(user456, space.getOccupiedByUser());
     }
 
     @Test

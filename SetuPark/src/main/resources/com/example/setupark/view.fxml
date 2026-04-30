@@ -206,8 +206,11 @@
                         <ComboBox promptText="Start Time"/>
                         <ComboBox promptText="End Time"/>
                     </HBox>
+                    <HBox spacing="10" style="-fx-padding: 0 0 10 0;">
+                        <ComboBox promptText="Choose Space"/>
+                    </HBox>
 
-                    <Button text="Reserve Spot" styleClass="primary-button"/>
+                    <Button text="Reserve Spot" styleClass="primary-button" />
                 </VBox>
             </VBox>
         </SplitPane>

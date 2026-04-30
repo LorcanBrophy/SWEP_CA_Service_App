@@ -1,6 +1,7 @@
 package com.example.setupark.controller;
 
 import com.example.setupark.model.ParkingSpace;
+import com.example.setupark.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +13,7 @@ public class ControllerTest {
     private Controller controller;
     private ParkingSpace space;
     private LocalDateTime now;
+    private User user;
 
     @BeforeEach
     void setUp() {
@@ -19,6 +21,8 @@ public class ControllerTest {
         space = new ParkingSpace("A1", ParkingSpace.State.AVAILABLE);
         controller.addSpace(space);
         now = LocalDateTime.of(2026, 1, 1, 10, 0); // 10am 1/1/26
+
+        user = new User("user123", User.Role.STAFF);
     }
 
     // crud
@@ -44,13 +48,13 @@ public class ControllerTest {
 
     @Test
     void reserveAvailableSpaceTest() {
-        boolean result = controller.reserveSpace("A1", "user123", now, now.plusHours(1));
+        boolean result = controller.reserveSpace("A1", user, now, now.plusHours(1));
         assertTrue(result);
     }
 
     @Test
     void reserveChangesStateToReservedTest() {
-        controller.reserveSpace("A1", "user123", now, now.plusHours(1));
+        controller.reserveSpace("A1", user, now, now.plusHours(1));
         assertEquals(ParkingSpace.State.RESERVED, space.getState());
     }
 
@@ -59,28 +63,30 @@ public class ControllerTest {
     @Test
     void reserveOccupiedSpaceTest() {
         space.setState(ParkingSpace.State.OCCUPIED);
-        boolean result = controller.reserveSpace("A1", "user123", now, now.plusHours(1));
+        boolean result = controller.reserveSpace("A1", user, now, now.plusHours(1));
         assertFalse(result);
     }
 
     @Test
     void occupyChangesStateToOccupiedTest() {
-        controller.reserveSpace("A1", "user123", now, now.plusHours(1));
-        controller.occupySpace("A1", "user123");
+        controller.reserveSpace("A1", user, now, now.plusHours(1));
+        controller.occupySpace("A1", user);
         assertEquals(ParkingSpace.State.OCCUPIED, space.getState());
     }
 
     @Test
     void occupyFailsWithWrongUserTest() {
-        controller.reserveSpace("A1", "user123", now, now.plusHours(1));
-        boolean result = controller.occupySpace("A1", "user1234");
+        User user2 = new User("user2", User.Role.STUDENT);
+
+        controller.reserveSpace("A1", user, now, now.plusHours(1));
+        boolean result = controller.occupySpace("A1", user2);
         assertFalse(result);
     }
 
     @Test
     void occupyFailsIfNotReservedStateTest() {
         space.setState(ParkingSpace.State.AVAILABLE);
-        boolean result = controller.occupySpace("A1", "user123");
+        boolean result = controller.occupySpace("A1", user);
         assertFalse(result);
     }
 
@@ -88,7 +94,7 @@ public class ControllerTest {
 
     @Test
     void releaseSetsStateToAvailableTest() {
-        controller.reserveSpace("A1", "user123", now, now.plusHours(1));
+        controller.reserveSpace("A1", user, now, now.plusHours(1));
         controller.releaseSpace("A1");
         assertEquals(ParkingSpace.State.AVAILABLE, space.getState());
     }
@@ -97,14 +103,14 @@ public class ControllerTest {
 
     @Test
     void expiredReservationBecomesAvailableTest() {
-        controller.reserveSpace("A1", "user123", now, now.minusHours(1));
+        controller.reserveSpace("A1", user, now, now.minusHours(1));
         controller.expired(now);
         assertEquals(ParkingSpace.State.AVAILABLE, space.getState());
     }
 
     @Test
     void expiredDoesNothingIfNotPastEndTimeTest() {
-        controller.reserveSpace("A1", "user123", now, now.plusHours(1));
+        controller.reserveSpace("A1", user, now, now.plusHours(1));
         controller.expired(now);
         assertEquals(ParkingSpace.State.RESERVED, space.getState());
     }
